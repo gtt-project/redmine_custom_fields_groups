@@ -1,6 +1,10 @@
 <tr class="<%= cycle("odd", "even") %>">
   <td><%= link_to custom_fields_group.name, edit_custom_fields_group_path(custom_fields_group) %></td>
-  <!-- TODO: custom fields list -->
+  <td class="text">
+    <% custom_fields_group.custom_fields.sorted.each do |cf| %>
+      <%= textilizable cf.name %>
+    <% end %>
+  </td>
   <td class="buttons">
     <%= reorder_handle(custom_fields_group, url: custom_fields_group_path(custom_fields_group), param: 'custom_fields_group') %>
     <%= delete_link custom_fields_group_path(custom_fields_group) %>

@@ -1,0 +1,9 @@
+<%= title [l(:label_custom_fields_group_plural), custom_fields_groups_path], l(:label_custom_fields_group_new) %>
+
+<%= labelled_form_for :custom_fields_group, @custom_fields_group, url: custom_fields_groups_path do |f| %>
+  <%= render partial: 'form', locals: { f: f } %>
+  <p>
+    <%= submit_tag l :button_create %>
+    <%= submit_tag l(:button_create_and_continue), name: 'continue' %>
+  </p>
+<% end %>

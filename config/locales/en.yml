@@ -1,0 +1,9 @@
+# English strings go here for Rails i18n
+en:
+  label_custom_fields_group: Custom Fields Group
+  label_custom_fields_group_new: New Custom Fields Group
+  label_custom_fields_group_plural: Custom Fields Groups
+  label_custom_fields_group_settings: Custom Fields Group Settings
+  label_custom_fields_group_tag: Group Tag
+  label_custom_fields_group_style: Group Style
+  text_custom_fields_group_style_notice: TBD

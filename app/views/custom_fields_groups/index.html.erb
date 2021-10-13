@@ -1,0 +1,27 @@
+<div class="contextual">
+<%= link_to l(:label_custom_fields_group_new), new_custom_fields_group_path, :class => 'icon icon-add' %>
+</div>
+
+<%= title l :label_custom_fields_group_plural %>
+
+<% if @custom_fields_groups.any? %>
+<table class="list custom_fields_groups">
+  <thead>
+    <tr>
+      <th><%= l :label_name %></th>
+      <!-- TODO: custom fields -->
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render collection: @custom_fields_groups, partial: 'custom_fields_group' %>
+  </tbody>
+</table>
+
+<% else %>
+<p class="nodata"><%= l :label_no_data %></p>
+<% end %>
+
+<%= javascript_tag do %>
+  $(function() { $("table.custom_fields_groups tbody").positionedItems(); });
+<% end %>

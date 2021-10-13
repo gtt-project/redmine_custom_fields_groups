@@ -1,0 +1,78 @@
+<% group_tag = Setting.plugin_redmine_custom_fields_groups['group_tag'] || 'h4' %>
+<% group_style = Setting.plugin_redmine_custom_fields_groups['group_style'] %>
+<% grouped_custom_field_values(@issue.editable_custom_field_values).each do |title, values| %>
+  <% if values.present? %>
+    <% full_width_values = values.select { |value| value.custom_field.full_width_layout? } %>
+    <% half_width_values = values - full_width_values %>
+    <% if group_tag == 'fieldset+legend' %>
+      <% if title.nil? %>
+        <% if half_width_values.present? %>
+          <div class="splitcontent">
+            <div class="splitcontentleft">
+              <% i = 0 %>
+              <% split_on = (half_width_values.size / 2.0).ceil - 1 %>
+              <% half_width_values.each do |value| %>
+                <p><%= custom_field_tag_with_label :issue, value, :required => @issue.required_attribute?(value.custom_field_id) %></p>
+                <% if i == split_on -%>
+            </div>
+            <div class="splitcontentright">
+                <% end -%>
+                <% i += 1 -%>
+              <% end -%>
+            </div>
+          </div>
+        <% end %>
+        <% full_width_values.each do |value| %>
+          <p><%= custom_field_tag_with_label :issue, value, :required => @issue.required_attribute?(value.custom_field_id) %></p>
+          <%= wikitoolbar_for "issue_custom_field_values_#{value.custom_field_id}", preview_issue_path(:project_id => @issue.project, :issue_id => @issue.id) if value.custom_field.full_text_formatting? %>
+        <% end %>
+      <% else %>
+        <fieldset class="collapsible">
+          <%= content_tag('legend', title, :style => group_style, :onclick => "toggleFieldset(this);", :class => "icon icon-expended") %>
+          <% if half_width_values.present? %>
+            <div class="splitcontent">
+              <div class="splitcontentleft">
+                <% i = 0 %>
+                <% split_on = (half_width_values.size / 2.0).ceil - 1 %>
+                <% half_width_values.each do |value| %>
+                  <p><%= custom_field_tag_with_label :issue, value, :required => @issue.required_attribute?(value.custom_field_id) %></p>
+                  <% if i == split_on -%>
+              </div>
+              <div class="splitcontentright">
+                  <% end -%>
+                  <% i += 1 -%>
+                <% end -%>
+              </div>
+            </div>
+          <% end %>
+          <% full_width_values.each do |value| %>
+            <p><%= custom_field_tag_with_label :issue, value, :required => @issue.required_attribute?(value.custom_field_id) %></p>
+            <%= wikitoolbar_for "issue_custom_field_values_#{value.custom_field_id}", preview_issue_path(:project_id => @issue.project, :issue_id => @issue.id) if value.custom_field.full_text_formatting? %>
+          <% end %>
+        </fieldset>
+      <% end %>
+    <% else %>
+      <%= content_tag(group_tag, title, :style => group_style) unless title.nil? %>
+      <% if half_width_values.present? %>
+        <div class="splitcontent">
+          <div class="splitcontentleft">
+            <% i = 0 %>
+            <% split_on = (half_width_values.size / 2.0).ceil - 1 %>
+            <% half_width_values.each do |value| %>
+              <p><%= custom_field_tag_with_label :issue, value, :required => @issue.required_attribute?(value.custom_field_id) %></p>
+              <% if i == split_on -%>
+          </div>
+          <div class="splitcontentright">
+              <% end -%>
+              <% i += 1 -%>
+            <% end -%>
+          </div>
+        </div>
+      <% end %>
+      <% full_width_values.each do |value| %>
+        <p><%= custom_field_tag_with_label :issue, value, :required => @issue.required_attribute?(value.custom_field_id) %></p>
+        <%= wikitoolbar_for "issue_custom_field_values_#{value.custom_field_id}", preview_issue_path(:project_id => @issue.project, :issue_id => @issue.id) if value.custom_field.full_text_formatting? %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

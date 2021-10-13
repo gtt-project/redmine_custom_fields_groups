@@ -1,0 +1,22 @@
+<div class="box tabular settings">
+  <h3><%= l(:label_custom_fields_group_settings) %></h3>
+  <p>
+    <%= content_tag(:label, l(:label_custom_fields_group_tag)) %>
+    <%= select_tag('settings[group_tag]',
+                   options_for_select([
+                     ["h1", "h1"],
+                     ["h2", "h2"],
+                     ["h3", "h3"],
+                     ["h4", "h4"],
+                     ["fieldset+legend", "fieldset+legend"]
+                   ], @settings['group_tag'].to_s)) %>
+  </p>
+
+  <p>
+    <%= content_tag(:label, l(:label_custom_fields_group_style)) %>
+    <%= text_field_tag('settings[group_style]',
+                       @settings['group_style'],
+                       :size => 50) %>
+    <em class="info"><%= l(:text_custom_fields_group_style_notice) %></em>
+  </p>
+</div>

@@ -1,0 +1,6 @@
+<%= error_messages_for 'custom_fields_group' %>
+
+<div class="box tabular">
+  <p><%= f.text_field :name, required: true, size: 25  %></p>
+  <p><%= group_fields_edit_tag @custom_fields_group %>
+</div>

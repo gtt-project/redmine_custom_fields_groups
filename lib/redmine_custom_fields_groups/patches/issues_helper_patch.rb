@@ -35,27 +35,27 @@ module RedmineCustomFieldsGroups
               if values.present?
                 if group_tag == 'fieldset+legend'
                   if title.nil?
-                    s << render_half_width_custom_fields_rows_by_grouped_values(values)
-                    s << render_full_width_custom_fields_rows_by_grouped_values(values)
+                    s << render_half_width_custom_fields_rows_by_grouped_values(issue, values)
+                    s << render_full_width_custom_fields_rows_by_grouped_values(issue, values)
                   else
                     s << content_tag('fieldset', :class => 'collapsible') do
                       concat content_tag('legend', title, :style => group_style,
                         :onclick => 'toggleFieldset(this);', :class => 'icon icon-expended')
-                      concat render_half_width_custom_fields_rows_by_grouped_values(values)
-                      concat render_full_width_custom_fields_rows_by_grouped_values(values)
+                      concat render_half_width_custom_fields_rows_by_grouped_values(issue, values)
+                      concat render_full_width_custom_fields_rows_by_grouped_values(issue, values)
                     end
                   end
                 else
                   s << content_tag(group_tag, title, :style => group_style) unless title.nil?
-                  s << render_half_width_custom_fields_rows_by_grouped_values(values)
-                  s << render_full_width_custom_fields_rows_by_grouped_values(values)
+                  s << render_half_width_custom_fields_rows_by_grouped_values(issue, values)
+                  s << render_full_width_custom_fields_rows_by_grouped_values(issue, values)
                 end
               end
             end
             s
           end
 
-          def render_half_width_custom_fields_rows_by_grouped_values(custom_field_values)
+          def render_half_width_custom_fields_rows_by_grouped_values(issue, custom_field_values)
             values = custom_field_values.reject {|value| value.custom_field.full_width_layout?}
             return if values.empty?
 
@@ -68,7 +68,7 @@ module RedmineCustomFieldsGroups
             end
           end
 
-          def render_full_width_custom_fields_rows_by_grouped_values(custom_field_values)
+          def render_full_width_custom_fields_rows_by_grouped_values(issue, custom_field_values)
             values = custom_field_values.select {|value| value.custom_field.full_width_layout?}
             return if values.empty?
 

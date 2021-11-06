@@ -1,3 +1,5 @@
+#admin-menu a.custom-fields-groups { background-image: url(../images/textfields_group.png);}
+
 h3.custom-fields-groups {
   background: #0001;
   border-bottom: 3px solid black;

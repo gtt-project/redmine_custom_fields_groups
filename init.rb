@@ -20,5 +20,5 @@ Redmine::Plugin.register :redmine_custom_fields_groups do
     { controller: 'custom_fields_groups', action: 'index' },
     caption: :label_custom_fields_group_plural,
     after: :custom_fields,
-    html: { class: 'icon icon-custom-fields custom-fields' }
+    html: { class: 'icon icon-custom-fields custom-fields-groups' }
 end

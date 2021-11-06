@@ -1,0 +1,7 @@
+# Japanese strings go here for Rails i18n
+ja:
+  label_custom_fields_group: カスタムフィールドグループ
+  label_custom_fields_group_new: 新しいカスタムフィールドグループ
+  label_custom_fields_group_plural: カスタムフィールドグループ
+  label_custom_fields_group_settings: カスタムフィールドグループ設定
+  label_custom_fields_group_tag: カスタムフィールドグループタグ

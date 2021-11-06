@@ -1,5 +1,4 @@
 <% group_tag = Setting.plugin_redmine_custom_fields_groups['group_tag'] || 'h4' %>
-<% group_style = Setting.plugin_redmine_custom_fields_groups['group_style'] %>
 <% grouped_custom_field_values(@issue.editable_custom_field_values).each do |title, values| %>
   <% if values.present? %>
     <% full_width_values = values.select { |value| value.custom_field.full_width_layout? } %>
@@ -27,8 +26,8 @@
           <%= wikitoolbar_for "issue_custom_field_values_#{value.custom_field_id}", preview_issue_path(:project_id => @issue.project, :issue_id => @issue.id) if value.custom_field.full_text_formatting? %>
         <% end %>
       <% else %>
-        <fieldset class="collapsible">
-          <%= content_tag('legend', title, :style => group_style, :onclick => "toggleFieldset(this);", :class => "icon icon-expended") %>
+        <fieldset class="collapsible custom-fields-groups">
+          <%= content_tag('legend', title, :onclick => "toggleFieldset(this);", :class => "icon icon-expended") %>
           <% if half_width_values.present? %>
             <div class="splitcontent">
               <div class="splitcontentleft">
@@ -52,7 +51,7 @@
         </fieldset>
       <% end %>
     <% else %>
-      <%= content_tag(group_tag, title, :style => group_style) unless title.nil? %>
+      <%= content_tag(group_tag, title, :class => "custom-fields-groups") unless title.nil? %>
       <% if half_width_values.present? %>
         <div class="splitcontent">
           <div class="splitcontentleft">

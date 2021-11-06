@@ -1,0 +1,20 @@
+h3.custom-fields-groups {
+  background: #0001;
+  border-bottom: 3px solid black;
+  padding: 0.4em;
+}
+
+h4.custom-fields-groups {
+  background: #0001;
+  padding: 0.3em;
+}
+
+fieldset.collapsible.custom-fields-groups {
+  border-width: 1px;
+  margin-top: 5px;
+}
+
+fieldset.collapsible.custom-fields-groups>legend {
+  font-size: 15px;
+  font-weight: bold;
+}

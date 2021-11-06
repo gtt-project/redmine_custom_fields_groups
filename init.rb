@@ -13,7 +13,6 @@ Redmine::Plugin.register :redmine_custom_fields_groups do
   settings partial: 'settings/redmine_custom_fields_groups',
     default: {
       'group_tag' => 'h4',
-      'group_style' => 'background: #0001; padding: 0.3em;',
     }
 
   menu :admin_menu,

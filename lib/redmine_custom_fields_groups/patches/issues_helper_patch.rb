@@ -29,7 +29,6 @@ module RedmineCustomFieldsGroups
             return if custom_field_values.empty?
 
             group_tag = Setting.plugin_redmine_custom_fields_groups['group_tag'] || 'h4'
-            group_style = Setting.plugin_redmine_custom_fields_groups['group_style']
             s = ''.html_safe
             grouped_custom_field_values(custom_field_values).each do |title, values|
               if values.present?
@@ -38,15 +37,15 @@ module RedmineCustomFieldsGroups
                     s << render_half_width_custom_fields_rows_by_grouped_values(issue, values)
                     s << render_full_width_custom_fields_rows_by_grouped_values(issue, values)
                   else
-                    s << content_tag('fieldset', :class => 'collapsible') do
-                      concat content_tag('legend', title, :style => group_style,
-                        :onclick => 'toggleFieldset(this);', :class => 'icon icon-expended')
+                    s << content_tag('fieldset', :class => 'collapsible custom-fields-groups') do
+                      concat content_tag('legend', title, :onclick => 'toggleFieldset(this);',
+                        :class => 'icon icon-expended')
                       concat render_half_width_custom_fields_rows_by_grouped_values(issue, values)
                       concat render_full_width_custom_fields_rows_by_grouped_values(issue, values)
                     end
                   end
                 else
-                  s << content_tag(group_tag, title, :style => group_style) unless title.nil?
+                  s << content_tag(group_tag, title, :class => 'custom-fields-groups') unless title.nil?
                   s << render_half_width_custom_fields_rows_by_grouped_values(issue, values)
                   s << render_full_width_custom_fields_rows_by_grouped_values(issue, values)
                 end

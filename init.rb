@@ -2,11 +2,11 @@ require 'redmine_custom_fields_groups'
 
 Redmine::Plugin.register :redmine_custom_fields_groups do
   name 'Redmine Custom Fields Groups plugin'
-  author 'Ko Nagase'
+  author 'Georepublic'
+  author_url 'https://github.com/georepublic'
+  url 'https://github.com/gtt-project/redmine_custom_fields_groups'
   description 'This is a plugin for grouping custom fields'
   version '0.0.1'
-  url 'https://hub.georepublic.net/gtt/redmine_custom_fields_groups'
-  author_url 'https://hub.georepublic.net/nagase'
 
   requires_redmine :version_or_higher => '4.0.0'
 

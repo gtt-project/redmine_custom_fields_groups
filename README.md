@@ -4,7 +4,7 @@ This is a plugin for grouping custom fields.
 
 ## Requirements
 
- - Redmine >= 4.0.0
+- Redmine >= 4.0.0
 
 ## Installation
 

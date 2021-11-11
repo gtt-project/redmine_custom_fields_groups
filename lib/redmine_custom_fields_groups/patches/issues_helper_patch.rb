@@ -27,11 +27,11 @@ module RedmineCustomFieldsGroups
             custom_field_values = issue.visible_custom_field_values
             return if custom_field_values.empty?
 
-            group_tag = Setting.plugin_redmine_custom_fields_groups['group_tag'] || 'h4'
+            custom_fields_group_tag = Setting.plugin_redmine_custom_fields_groups['custom_fields_group_tag'] || 'h4'
             s = ''.html_safe
             grouped_custom_field_values(custom_field_values).each do |title, values|
               if values.present?
-                if group_tag == 'fieldset+legend'
+                if custom_fields_group_tag == 'fieldset+legend'
                   if title.nil?
                     s << render_half_width_custom_fields_rows_by_grouped_values(issue, values)
                     s << render_full_width_custom_fields_rows_by_grouped_values(issue, values)
@@ -44,7 +44,7 @@ module RedmineCustomFieldsGroups
                     end
                   end
                 else
-                  s << content_tag(group_tag, title, :class => 'custom-fields-groups') unless title.nil?
+                  s << content_tag(custom_fields_group_tag, title, :class => 'custom-fields-groups') unless title.nil?
                   s << render_half_width_custom_fields_rows_by_grouped_values(issue, values)
                   s << render_full_width_custom_fields_rows_by_grouped_values(issue, values)
                 end

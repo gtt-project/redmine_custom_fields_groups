@@ -1,9 +1,9 @@
-<% group_tag = Setting.plugin_redmine_custom_fields_groups['group_tag'] || 'h4' %>
+<% custom_fields_group_tag = Setting.plugin_redmine_custom_fields_groups['custom_fields_group_tag'] || 'h4' %>
 <% grouped_custom_field_values(@issue.editable_custom_field_values).each do |title, values| %>
   <% if values.present? %>
     <% full_width_values = values.select { |value| value.custom_field.full_width_layout? } %>
     <% half_width_values = values - full_width_values %>
-    <% if group_tag == 'fieldset+legend' %>
+    <% if custom_fields_group_tag == 'fieldset+legend' %>
       <% if title.nil? %>
         <% if half_width_values.present? %>
           <div class="splitcontent">
@@ -51,7 +51,7 @@
         </fieldset>
       <% end %>
     <% else %>
-      <%= content_tag(group_tag, title, :class => "custom-fields-groups") unless title.nil? %>
+      <%= content_tag(custom_fields_group_tag, title, :class => "custom-fields-groups") unless title.nil? %>
       <% if half_width_values.present? %>
         <div class="splitcontent">
           <div class="splitcontentleft">

@@ -2,11 +2,11 @@
   <h3><%= l(:label_custom_fields_group_settings) %></h3>
   <p>
     <%= content_tag(:label, l(:label_custom_fields_group_tag)) %>
-    <%= select_tag('settings[group_tag]',
+    <%= select_tag('settings[custom_fields_group_tag]',
                    options_for_select([
                      ["h3", "h3"],
                      ["h4", "h4"],
                      ["fieldset+legend", "fieldset+legend"]
-                   ], @settings['group_tag'].to_s)) %>
+                   ], @settings['custom_fields_group_tag'].to_s)) %>
   </p>
 </div>

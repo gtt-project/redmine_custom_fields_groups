@@ -8,7 +8,6 @@ module RedmineCustomFieldsGroups
         base.extend(ClassMethods)
         base.send(:prepend, InstanceMethods)
         base.class_eval do
-          unloadable
 
           # Referred:
           # - Patch #30919: Group Issues Custom Fields - (Form like Issues) - Redmine

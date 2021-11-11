@@ -3,7 +3,7 @@
   <% if values.present? %>
     <% full_width_values = values.select { |value| value.custom_field.full_width_layout? } %>
     <% half_width_values = values - full_width_values %>
-    <% if custom_fields_group_tag == 'fieldset+legend' %>
+    <% if custom_fields_group_tag == 'fieldset' %>
       <% if title.nil? %>
         <% if half_width_values.present? %>
           <div class="splitcontent">

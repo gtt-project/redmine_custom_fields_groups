@@ -31,7 +31,7 @@ module RedmineCustomFieldsGroups
             s = ''.html_safe
             grouped_custom_field_values(custom_field_values).each do |title, values|
               if values.present?
-                if custom_fields_group_tag == 'fieldset+legend'
+                if custom_fields_group_tag == 'fieldset'
                   if title.nil?
                     s << render_half_width_custom_fields_rows_by_grouped_values(issue, values)
                     s << render_full_width_custom_fields_rows_by_grouped_values(issue, values)

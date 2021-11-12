@@ -5,3 +5,9 @@ en:
   label_custom_fields_group_plural: Custom Fields Groups
   label_custom_fields_group_settings: Custom Fields Group Settings
   label_custom_fields_group_tag: Custom Fields Group Tag
+  label_group_tag_h3: H3
+  label_group_tag_h4: H4
+  label_group_tag_fieldset: Fieldset
+  label_fieldset_default_state: Fieldset Default State
+  label_fieldset_state_all_expended: All expended
+  label_fieldset_state_all_collapsed: All collapsed

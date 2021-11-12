@@ -12,7 +12,8 @@ Redmine::Plugin.register :redmine_custom_fields_groups do
 
   settings partial: 'settings/redmine_custom_fields_groups',
     default: {
-      'group_tag' => 'h4',
+      'custom_fields_group_tag' => 'h4',
+      'fieldset_default_state' => 'all_expended'
     }
 
   menu :admin_menu,

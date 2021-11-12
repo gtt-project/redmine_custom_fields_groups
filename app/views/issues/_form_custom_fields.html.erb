@@ -1,9 +1,17 @@
-<% group_tag = Setting.plugin_redmine_custom_fields_groups['group_tag'] || 'h4' %>
+<% custom_fields_group_tag = User.current.pref.custom_fields_group_tag %>
+<% if custom_fields_group_tag.blank? %>
+  <% custom_fields_group_tag = Setting.plugin_redmine_custom_fields_groups['custom_fields_group_tag'] || 'h4' %>
+<% end %>
+<% fieldset_default_state = User.current.pref.fieldset_default_state %>
+<% if fieldset_default_state.blank? %>
+  <% fieldset_default_state = Setting.plugin_redmine_custom_fields_groups['fieldset_default_state'] || 'all_expended' %>
+<% end %>
+<% all_collapsed = (fieldset_default_state == 'all_collapsed') %>
 <% grouped_custom_field_values(@issue.editable_custom_field_values).each do |title, values| %>
   <% if values.present? %>
     <% full_width_values = values.select { |value| value.custom_field.full_width_layout? } %>
     <% half_width_values = values - full_width_values %>
-    <% if group_tag == 'fieldset+legend' %>
+    <% if custom_fields_group_tag == 'fieldset' %>
       <% if title.nil? %>
         <% if half_width_values.present? %>
           <div class="splitcontent">
@@ -26,10 +34,13 @@
           <%= wikitoolbar_for "issue_custom_field_values_#{value.custom_field_id}", preview_issue_path(:project_id => @issue.project, :issue_id => @issue.id) if value.custom_field.full_text_formatting? %>
         <% end %>
       <% else %>
-        <fieldset class="collapsible custom-fields-groups">
-          <%= content_tag('legend', title, :onclick => "toggleFieldset(this);", :class => "icon icon-expended") %>
+        <% fieldset_class = 'collapsible custom-fields-groups' + (all_collapsed ? ' collapsed' : '') %>
+        <% legend_class = 'icon ' + (all_collapsed ? 'icon-collapsed' : 'icon-expended') %>
+        <% div_style = all_collapsed ? 'display: none' : '' %>
+        <fieldset class="<%= fieldset_class %>">
+          <%= content_tag('legend', title, :onclick => "toggleFieldset(this);", :class => legend_class) %>
           <% if half_width_values.present? %>
-            <div class="splitcontent">
+            <div class="splitcontent" style="<%= div_style %>">
               <div class="splitcontentleft">
                 <% i = 0 %>
                 <% split_on = (half_width_values.size / 2.0).ceil - 1 %>
@@ -45,13 +56,13 @@
             </div>
           <% end %>
           <% full_width_values.each do |value| %>
-            <p><%= custom_field_tag_with_label :issue, value, :required => @issue.required_attribute?(value.custom_field_id) %></p>
+            <div style="<%= div_style %>"><p><%= custom_field_tag_with_label :issue, value, :required => @issue.required_attribute?(value.custom_field_id) %></p></div>
             <%= wikitoolbar_for "issue_custom_field_values_#{value.custom_field_id}", preview_issue_path(:project_id => @issue.project, :issue_id => @issue.id) if value.custom_field.full_text_formatting? %>
           <% end %>
         </fieldset>
       <% end %>
     <% else %>
-      <%= content_tag(group_tag, title, :class => "custom-fields-groups") unless title.nil? %>
+      <%= content_tag(custom_fields_group_tag, title, :class => "custom-fields-groups") unless title.nil? %>
       <% if half_width_values.present? %>
         <div class="splitcontent">
           <div class="splitcontentleft">

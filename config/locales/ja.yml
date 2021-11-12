@@ -5,3 +5,9 @@ ja:
   label_custom_fields_group_plural: カスタムフィールドグループ
   label_custom_fields_group_settings: カスタムフィールドグループ設定
   label_custom_fields_group_tag: カスタムフィールドグループタグ
+  label_group_tag_h3: H3
+  label_group_tag_h4: H4
+  label_group_tag_fieldset: フィールドセット
+  label_fieldset_default_state: フィールドセットのデフォルト状態
+  label_fieldset_state_all_expended: 全て展開
+  label_fieldset_state_all_collapsed: 全て折りたたみ

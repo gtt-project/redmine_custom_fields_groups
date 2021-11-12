@@ -27,7 +27,15 @@ module RedmineCustomFieldsGroups
             custom_field_values = issue.visible_custom_field_values
             return if custom_field_values.empty?
 
-            custom_fields_group_tag = Setting.plugin_redmine_custom_fields_groups['custom_fields_group_tag'] || 'h4'
+            custom_fields_group_tag = User.current.pref.custom_fields_group_tag
+            if custom_fields_group_tag.blank?
+              custom_fields_group_tag = Setting.plugin_redmine_custom_fields_groups['custom_fields_group_tag'] || 'h4'
+            end
+            fieldset_default_state = User.current.pref.fieldset_default_state
+            if fieldset_default_state.blank?
+              fieldset_default_state = Setting.plugin_redmine_custom_fields_groups['fieldset_default_state'] || 'all_expended'
+            end
+
             s = ''.html_safe
             grouped_custom_field_values(custom_field_values).each do |title, values|
               if values.present?
@@ -49,6 +57,10 @@ module RedmineCustomFieldsGroups
                   s << render_full_width_custom_fields_rows_by_grouped_values(issue, values)
                 end
               end
+            end
+            # temporary hack
+            if custom_fields_group_tag == 'fieldset' && fieldset_default_state == 'all_collapsed'
+              s << javascript_tag("$('div.issue div.attributes fieldset.custom-fields-groups>legend').each(function(idx,elem){toggleFieldset(elem);})")
             end
             s
           end

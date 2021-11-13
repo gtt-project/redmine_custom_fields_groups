@@ -30,7 +30,3 @@ module RedmineCustomFieldsGroups
     end
   end
 end
-
-unless UserPreference.included_modules.include?(RedmineCustomFieldsGroups::Patches::UserPreferencePatch)
-  UserPreference.send(:include, RedmineCustomFieldsGroups::Patches::UserPreferencePatch)
-end

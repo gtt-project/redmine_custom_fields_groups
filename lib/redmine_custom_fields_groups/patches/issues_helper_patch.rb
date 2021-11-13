@@ -112,7 +112,3 @@ module RedmineCustomFieldsGroups
     end #module
   end #module
 end #module
-
-unless IssuesHelper.included_modules.include?(RedmineCustomFieldsGroups::Patches::IssuesHelperPatch)
-  IssuesHelper.send(:include, RedmineCustomFieldsGroups::Patches::IssuesHelperPatch)
-end

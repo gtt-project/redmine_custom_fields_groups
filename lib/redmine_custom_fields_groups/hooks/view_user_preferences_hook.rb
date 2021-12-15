@@ -18,7 +18,7 @@ module RedmineCustomFieldsGroups
         s << label_tag("pref_custom_fields_group_tag", l(:label_custom_fields_group_tag))
         s << select_tag(
                 "pref[custom_fields_group_tag]",
-                options_for_select([["",""]] + RedmineCustomFieldsGroups::Options::GROUP_TAGS, user.pref.custom_fields_group_tag),
+                options_for_select([["",""]] + RedmineCustomFieldsGroups::Options::group_tags, user.pref.custom_fields_group_tag),
                 :id => 'pref_custom_fields_group_tag',
                 :blank => ''
               )
@@ -27,7 +27,7 @@ module RedmineCustomFieldsGroups
         s << label_tag("pref_fieldset_default_state", l(:label_fieldset_default_state))
         s << select_tag(
                 "pref[fieldset_default_state]",
-                options_for_select([["",""]] + RedmineCustomFieldsGroups::Options::FIELDSET_STATES, user.pref.fieldset_default_state),
+                options_for_select([["",""]] + RedmineCustomFieldsGroups::Options::fieldset_states, user.pref.fieldset_default_state),
                 :id => 'pref_fieldset_default_state',
                 :blank => ''
               )

@@ -4,14 +4,14 @@
     <%= content_tag(:label, l(:label_custom_fields_group_tag)) %>
     <%= select_tag('settings[custom_fields_group_tag]',
                     options_for_select(
-                      RedmineCustomFieldsGroups::Options::GROUP_TAGS,
+                      RedmineCustomFieldsGroups::Options::group_tags,
                       @settings['custom_fields_group_tag'].to_s)) %>
   </p>
   <p>
     <%= content_tag(:label, l(:label_fieldset_default_state)) %>
     <%= select_tag('settings[fieldset_default_state]',
                     options_for_select(
-                      RedmineCustomFieldsGroups::Options::FIELDSET_STATES,
+                      RedmineCustomFieldsGroups::Options::fieldset_states,
                       @settings['fieldset_default_state'].to_s)) %>
   </p>
 </div>

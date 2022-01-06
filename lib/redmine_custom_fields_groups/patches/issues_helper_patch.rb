@@ -1,5 +1,3 @@
-require_dependency "issues_helper"
-
 module RedmineCustomFieldsGroups
   module Patches
     module IssuesHelperPatch

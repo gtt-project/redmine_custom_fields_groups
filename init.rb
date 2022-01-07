@@ -1,10 +1,6 @@
 require File.expand_path('../lib/redmine_custom_fields_groups/hooks/view_layouts_base_html_head_hook', __FILE__)
 require File.expand_path('../lib/redmine_custom_fields_groups/hooks/view_user_preferences_hook', __FILE__)
 
-# Rails.application.paths["app/overrides"] ||= []
-# Rails.application.paths["app/overrides"] << File.expand_path("../app/overrides", __FILE__)
-require File.expand_path('../app/overrides/issues', __FILE__)
-
 Redmine::Plugin.register :redmine_custom_fields_groups do
   name 'Redmine Custom Fields Groups plugin'
   author 'Georepublic'
@@ -29,12 +25,18 @@ Redmine::Plugin.register :redmine_custom_fields_groups do
     html: { class: 'icon icon-custom-fields custom-fields-groups' }
 end
 
-Rails.application.config.after_initialize do
-  RedmineCustomFieldsGroups.setup
+if Rails.version > '6.0' && Rails.autoloaders.zeitwerk_enabled?
+  require File.expand_path('../app/overrides/issues', __FILE__)
+  Rails.application.config.after_initialize do
+    RedmineCustomFieldsGroups.setup
+  end
+  # RedmineCustomFieldsGroups.setup
+else
+  require 'redmine_custom_fields_groups'
+  Rails.application.paths["app/overrides"] ||= []
+  Rails.application.paths["app/overrides"] << File.expand_path("../app/overrides", __FILE__)
+
+  Rails.configuration.to_prepare do
+    RedmineCustomFieldsGroups.setup
+  end
 end
-
-# ActiveSupport::Reloader.to_prepare do
-#   RedmineCustomFieldsGroups.setup
-# end
-
-# RedmineCustomFieldsGroups.setup

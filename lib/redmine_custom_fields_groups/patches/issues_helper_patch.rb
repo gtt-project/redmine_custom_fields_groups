@@ -14,7 +14,7 @@ module RedmineCustomFieldsGroups
           #   - https://www.redmine.org/issues/30919
           def grouped_custom_field_values(custom_field_values)
             keys_grouped = CustomFieldsGroupField.joins(:custom_fields_group).
-              order('custom_fields_groups.position', :position).pluck(:name, :custom_field_id).group_by(&:shift)
+              pluck(:name, :custom_field_id).group_by(&:shift)
             custom_fields_grouped = { nil => (keys_grouped[nil].nil? ? [] :
               keys_grouped[nil].map{|n| custom_field_values.select{|x| x.custom_field[:id] == n[0]}}.flatten) |
               custom_field_values.select{|y| ! keys_grouped.values.flatten.include?(y.custom_field[:id])}}

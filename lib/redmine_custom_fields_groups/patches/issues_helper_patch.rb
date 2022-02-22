@@ -13,8 +13,10 @@ module RedmineCustomFieldsGroups
           # - Patch #30919: Group Issues Custom Fields - (Form like Issues) - Redmine
           #   - https://www.redmine.org/issues/30919
           def grouped_custom_field_values(custom_field_values)
-            keys_grouped = CustomFieldsGroupField.joins(:custom_fields_group).
-              pluck(:name, :custom_field_id).group_by(&:shift)
+            keys_grouped = CustomFieldsGroupField.
+              joins(:custom_fields_group, :custom_field).
+              order('custom_fields_groups.position', 'custom_fields.position').
+              pluck('custom_fields_groups.name', :custom_field_id).group_by(&:shift)
             custom_fields_grouped = { nil => (keys_grouped[nil].nil? ? [] :
               keys_grouped[nil].map{|n| custom_field_values.select{|x| x.custom_field[:id] == n[0]}}.flatten) |
               custom_field_values.select{|y| ! keys_grouped.values.flatten.include?(y.custom_field[:id])}}

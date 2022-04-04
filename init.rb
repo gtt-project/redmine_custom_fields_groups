@@ -30,7 +30,6 @@ if Rails.version > '6.0' && Rails.autoloaders.zeitwerk_enabled?
   Rails.application.config.after_initialize do
     RedmineCustomFieldsGroups.setup
   end
-  # RedmineCustomFieldsGroups.setup
 else
   require 'redmine_custom_fields_groups'
   Rails.application.paths["app/overrides"] ||= []

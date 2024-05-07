@@ -2,7 +2,7 @@ require File.expand_path('../../test_helper', __FILE__)
 
 class CustomFieldsGroupsControllerTest < ActionController::TestCase
   fixtures :custom_fields, :custom_fields_groups, :custom_fields_group_fields,
-          :users
+    :users
 
   setup do
     User.current = nil
@@ -36,16 +36,16 @@ class CustomFieldsGroupsControllerTest < ActionController::TestCase
     assert_difference 'CustomFieldsGroup.count' do
       post :create, :params => {
         :custom_fields_group => {
-          :name => 'Group 3',
+          :name => 'Group 4',
           :custom_field_ids => [9]
         }
       }
     end
     assert_redirected_to '/custom_fields_groups'
 
-    assert custom_fields_group = CustomFieldsGroup.find_by_name('Group 3')
+    assert custom_fields_group = CustomFieldsGroup.find_by_name('Group 4')
     assert_equal [9], custom_fields_group.custom_field_ids
-    assert_equal 3, custom_fields_group.position
+    assert_equal 4, custom_fields_group.position
   end
 
   test 'should not create custom fields gruop without name' do
@@ -101,5 +101,51 @@ class CustomFieldsGroupsControllerTest < ActionController::TestCase
       delete :destroy, :params => { :id => 1 }
     end
     assert_redirected_to '/custom_fields_groups'
+  end
+
+  test 'move highest' do
+    put :update, :params => {
+      :id => 2,
+      :custom_fields_group => {
+        :position => 1
+      }
+    }
+    assert_redirected_to '/custom_fields_groups'
+    assert_equal 1, CustomFieldsGroup.find(2).position
+  end
+
+  test 'move higher' do
+    position = CustomFieldsGroup.find(2).position
+    put :update, :params => {
+      :id => 2,
+      :custom_fields_group => {
+        :position => position - 1
+        }
+      }
+    assert_redirected_to '/custom_fields_groups'
+    assert_equal position - 1, CustomFieldsGroup.find(2).position
+  end
+
+  test 'move lower' do
+    position = CustomFieldsGroup.find(2).position
+    put :update, :params => {
+      :id => 2,
+      :custom_fields_group => {
+        :position => position + 1
+      }
+    }
+    assert_redirected_to '/custom_fields_groups'
+    assert_equal position + 1, CustomFieldsGroup.find(2).position
+  end
+
+  test 'move lowest' do
+    put :update, :params => {
+      :id => 2,
+      :custom_fields_group => {
+        :position => CustomFieldsGroup.count
+      }
+    }
+    assert_redirected_to '/custom_fields_groups'
+    assert_equal CustomFieldsGroup.count, CustomFieldsGroup.find(2).position
   end
 end

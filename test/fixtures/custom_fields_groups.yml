@@ -6,3 +6,7 @@ custom_fields_groups_200:
   id: 2
   name: Group 2
   position: 2
+custom_fields_groups_300:
+  id: 3
+  name: Group 3
+  position: 3

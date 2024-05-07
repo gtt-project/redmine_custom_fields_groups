@@ -84,16 +84,15 @@ class CustomFieldsGroupsControllerTest < ActionController::TestCase
   end
 
   test 'should not update custom fields group without name' do
-    ## FIXME: This test is failing
-    # post :update, :params => {
-    #   :id => 1,
-    #   :custom_fields_group => {
-    #     :name => '',
-    #     :custom_field_ids => [2]
-    #   }
-    # }
-    # assert_response :success
-    # assert_select_error /Name cannot be blank/
+    post :update, :params => {
+      :id => 1,
+      :custom_fields_group => {
+        :name => '',
+        :custom_field_ids => [2]
+      }
+    }
+    assert_response :success
+    assert_select_error /Name cannot be blank/
   end
 
   test 'should destroy custom fields group' do
@@ -109,8 +108,8 @@ class CustomFieldsGroupsControllerTest < ActionController::TestCase
       :custom_fields_group => {
         :position => 1
       }
-    }
-    assert_redirected_to '/custom_fields_groups'
+    }, :xhr => true
+    assert_response :success
     assert_equal 1, CustomFieldsGroup.find(2).position
   end
 
@@ -120,9 +119,9 @@ class CustomFieldsGroupsControllerTest < ActionController::TestCase
       :id => 2,
       :custom_fields_group => {
         :position => position - 1
-        }
       }
-    assert_redirected_to '/custom_fields_groups'
+    }, :xhr => true
+    assert_response :success
     assert_equal position - 1, CustomFieldsGroup.find(2).position
   end
 
@@ -133,8 +132,8 @@ class CustomFieldsGroupsControllerTest < ActionController::TestCase
       :custom_fields_group => {
         :position => position + 1
       }
-    }
-    assert_redirected_to '/custom_fields_groups'
+    }, :xhr => true
+    assert_response :success
     assert_equal position + 1, CustomFieldsGroup.find(2).position
   end
 
@@ -144,8 +143,8 @@ class CustomFieldsGroupsControllerTest < ActionController::TestCase
       :custom_fields_group => {
         :position => CustomFieldsGroup.count
       }
-    }
-    assert_redirected_to '/custom_fields_groups'
+    }, :xhr => true
+    assert_response :success
     assert_equal CustomFieldsGroup.count, CustomFieldsGroup.find(2).position
   end
 end

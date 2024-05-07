@@ -11,3 +11,4 @@ en:
   label_fieldset_default_state: Fieldset Default State
   label_fieldset_state_all_expended: All expended
   label_fieldset_state_all_collapsed: All collapsed
+  error_can_not_delete_custom_fields_group: Unable to delete custom fields group

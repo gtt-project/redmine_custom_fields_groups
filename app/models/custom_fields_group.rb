@@ -1,4 +1,4 @@
-class CustomFieldsGroup < ActiveRecord::Base
+class CustomFieldsGroup < (defined?(ApplicationRecord) == 'constant' ? ApplicationRecord : ActiveRecord::Base)
   validates :name, presence: true, uniqueness: true
 
   has_many :custom_fields_group_fields, :dependent => :delete_all

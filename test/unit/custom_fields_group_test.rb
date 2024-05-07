@@ -48,9 +48,8 @@ class CustomFieldsGroupTest < ActiveSupport::TestCase
 
   test 'deletion of custom_field should delete custom_fields_group_field' do
     custom_field = custom_fields(:custom_fields_001)
-    ## FIXME: This test is failing
-    # assert_difference 'CustomFieldsGroup.find(1).custom_fields.count', -1 do
-    #   assert custom_field.destroy
-    # end
+    assert_difference 'CustomFieldsGroup.find(1).custom_fields.count', -1 do
+      assert custom_field.destroy
+    end
   end
 end

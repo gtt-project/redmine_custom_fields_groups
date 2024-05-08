@@ -1,4 +1,4 @@
-require File.expand_path('../../test_helper', __FILE__)
+require_relative '../test_helper'
 
 class CustomFieldsGroupsControllerTest < ActionController::TestCase
   fixtures :custom_fields, :custom_fields_groups, :custom_fields_group_fields,

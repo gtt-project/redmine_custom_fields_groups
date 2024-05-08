@@ -166,7 +166,13 @@ jobs:
           # For system test in plugin
           GOOGLE_CHROME_OPTS_ARGS: "headless,disable-gpu,no-sandbox,disable-dev-shm-usage"
         working-directory: redmine
-        run: bundle exec rake redmine:plugins:test NAME=${{ env.PLUGIN_NAME }} RUBYOPT="-W0"
+        run: |
+          bundle exec rake redmine:plugins:test:units NAME=${{ env.PLUGIN_NAME }} RUBYOPT="-W0"
+          bundle exec rake redmine:plugins:test:functionals NAME=${{ env.PLUGIN_NAME }} RUBYOPT="-W0"
+          bundle exec rake redmine:plugins:test:integration NAME=${{ env.PLUGIN_NAME }} RUBYOPT="-W0"
+          if [ ${{ matrix.system_test }} = "true" ]; then
+            bundle exec rake redmine:plugins:test:system NAME=${{ env.PLUGIN_NAME }} RUBYOPT="-W0"
+          fi
 
       # - name: Run core tests
       #   env:

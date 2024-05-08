@@ -1,4 +1,5 @@
 require_relative '../../../../test/application_system_test_case'
+require_relative '../test_helper'
 
 class FieldsetTest < ApplicationSystemTestCase
   fixtures :projects, :users, :email_addresses, :roles, :members, :member_roles,

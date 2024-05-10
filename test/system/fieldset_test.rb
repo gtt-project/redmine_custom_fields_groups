@@ -13,7 +13,7 @@ class FieldsetTest < ApplicationSystemTestCase
     Setting.clear_cache
   end
 
-  test 'click group label should collapse/expand fieldset with default state all_expended' do
+  test 'click group title should collapse/expand fieldset with default state all_expended' do
     Setting.plugin_redmine_custom_fields_groups = {
       'custom_fields_group_tag' => 'fieldset',
       'fieldset_default_state' => 'all_expended'
@@ -28,12 +28,12 @@ class FieldsetTest < ApplicationSystemTestCase
       # default expanded
       assert page.has_content?('Searchable field')
       assert page.has_content?('Database')
-      # click group label
+      # click group title
       find('fieldset.custom-fields-groups > legend.icon', :text => 'Group 1').click
       # collapsed fields
       assert page.has_no_content?('Searchable field')
       assert page.has_no_content?('Database')
-      # click group label, again
+      # click group title, again
       find('fieldset.custom-fields-groups > legend.icon', :text => 'Group 1').click
       # expanded fields
       assert page.has_content?('Searchable field')
@@ -49,12 +49,12 @@ class FieldsetTest < ApplicationSystemTestCase
       # default expanded
       assert page.has_content?('Searchable field')
       assert page.has_content?('Database')
-      # click label
+      # click group title
       find('fieldset.custom-fields-groups > legend.icon', :text => 'Group 1').click
       # collapsed fields
       assert page.has_no_content?('Searchable field')
       assert page.has_no_content?('Database')
-      # click label, again
+      # click group title, again
       find('fieldset.custom-fields-groups > legend.icon', :text => 'Group 1').click
       # expanded fields
       assert page.has_content?('Searchable field')
@@ -62,7 +62,7 @@ class FieldsetTest < ApplicationSystemTestCase
     end
   end
 
-  test 'click group label should expand/collapse fieldset with default state all_collapsed' do
+  test 'click group title should expand/collapse fieldset with default state all_collapsed' do
     Setting.plugin_redmine_custom_fields_groups = {
       'custom_fields_group_tag' => 'fieldset',
       'fieldset_default_state' => 'all_collapsed'
@@ -77,12 +77,12 @@ class FieldsetTest < ApplicationSystemTestCase
       # default collapsed
       assert page.has_no_content?('Searchable field')
       assert page.has_no_content?('Database')
-      # click group label
+      # click group title
       find('fieldset.custom-fields-groups > legend.icon', :text => 'Group 1').click
       # expanded fields
       assert page.has_content?('Searchable field')
       assert page.has_content?('Database')
-      # click group label, again
+      # click group title, again
       find('fieldset.custom-fields-groups > legend.icon', :text => 'Group 1').click
       # collapsed fields
       assert page.has_no_content?('Searchable field')
@@ -98,12 +98,12 @@ class FieldsetTest < ApplicationSystemTestCase
       # default collapsed
       assert page.has_no_content?('Searchable field')
       assert page.has_no_content?('Database')
-      # click label
+      # click group title
       find('fieldset.custom-fields-groups > legend.icon', :text => 'Group 1').click
       # expanded fields
       assert page.has_content?('Searchable field')
       assert page.has_content?('Database')
-      # click label, again
+      # click group title, again
       find('fieldset.custom-fields-groups > legend.icon', :text => 'Group 1').click
       # collapsed fields
       assert page.has_no_content?('Searchable field')

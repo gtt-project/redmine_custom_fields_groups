@@ -9,6 +9,10 @@ class CustomFieldsGroupsControllerTest < ActionController::TestCase
     @request.session[:user_id] = 1 # admin
   end
 
+  teardown do
+    @request.session.clear
+  end
+
   test 'should require admin' do
     @request.session[:user_id] = nil
     get :index

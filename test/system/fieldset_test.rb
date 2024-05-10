@@ -42,6 +42,8 @@ class FieldsetTest < ApplicationSystemTestCase
 
     # issue edit
     page.first(:link, 'Edit').click
+    page.find('#issue_notes:focus')
+    sleep 0.1
     within('div#update div.attributes') do
       assert page.has_content?('Group 1')
       # default expanded
@@ -89,6 +91,8 @@ class FieldsetTest < ApplicationSystemTestCase
 
     # issue edit
     page.first(:link, 'Edit').click
+    page.find('#issue_notes:focus')
+    sleep 0.1
     within('div#update div.attributes') do
       assert page.has_content?('Group 1')
       # default collapsed

@@ -1,5 +1,5 @@
-require File.expand_path('../lib/redmine_custom_fields_groups/hooks/view_layouts_base_html_head_hook', __FILE__)
-require File.expand_path('../lib/redmine_custom_fields_groups/hooks/view_user_preferences_hook', __FILE__)
+require_relative 'lib/redmine_custom_fields_groups/hooks/view_layouts_base_html_head_hook'
+require_relative 'lib/redmine_custom_fields_groups/hooks/view_user_preferences_hook'
 
 Redmine::Plugin.register :redmine_custom_fields_groups do
   name 'Redmine Custom Fields Groups plugin'
@@ -26,7 +26,7 @@ Redmine::Plugin.register :redmine_custom_fields_groups do
 end
 
 if Rails.version > '6.0' && Rails.autoloaders.zeitwerk_enabled?
-  require File.expand_path('../app/overrides/issues', __FILE__)
+  require_relative 'app/overrides/issues'
   Rails.application.config.after_initialize do
     RedmineCustomFieldsGroups.setup
   end

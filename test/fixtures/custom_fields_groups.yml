@@ -1,0 +1,12 @@
+custom_fields_groups_100:
+  id: 1
+  name: Group 1
+  position: 1
+custom_fields_groups_200:
+  id: 2
+  name: Group 2
+  position: 2
+custom_fields_groups_300:
+  id: 3
+  name: Group 3
+  position: 3

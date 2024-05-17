@@ -35,7 +35,7 @@
         <% end %>
       <% else %>
         <% fieldset_class = 'collapsible custom-fields-groups' + (all_collapsed ? ' collapsed' : '') %>
-        <% legend_class = 'icon ' + (all_collapsed ? 'icon-collapsed' : 'icon-expended') %>
+        <% legend_class = 'icon icon-' + (all_collapsed ? 'collapsed' : ((Redmine::VERSION.to_s >= '5.0.0') ? 'expanded' : 'expended')) %>
         <% div_style = all_collapsed ? 'display: none' : '' %>
         <fieldset class="<%= fieldset_class %>">
           <%= content_tag('legend', title, :onclick => "toggleFieldset(this);", :class => legend_class) %>

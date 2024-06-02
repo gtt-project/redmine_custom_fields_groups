@@ -11,4 +11,4 @@ ja:
   label_fieldset_default_state: フィールドセットのデフォルト状態
   label_fieldset_state_all_expended: 全て展開
   label_fieldset_state_all_collapsed: 全て折りたたみ
-  error_can_not_delete_custom_fields_group: カスタムフィールドグループを削除できません。
+  error_can_not_delete_custom_fields_group: カスタムフィールドグループを削除できません

@@ -33,7 +33,7 @@ module RedmineCustomFieldsGroups
             end
             fieldset_default_state = User.current.pref.fieldset_default_state
             if fieldset_default_state.blank?
-              fieldset_default_state = Setting.plugin_redmine_custom_fields_groups['fieldset_default_state'] || 'all_expended'
+              fieldset_default_state = Setting.plugin_redmine_custom_fields_groups['fieldset_default_state'] || 'all_expanded'
             end
 
             s = ''.html_safe
@@ -46,7 +46,7 @@ module RedmineCustomFieldsGroups
                   else
                     s << content_tag('fieldset', :class => 'collapsible custom-fields-groups') do
                       concat content_tag('legend', title, :onclick => 'toggleFieldset(this);',
-                        :class => 'icon icon-' + ((Redmine::VERSION.to_s >= '5.0.0') ? 'expanded' : 'expended'))
+                        :class => 'icon icon-' + ((Redmine::VERSION.to_s >= '5.0.0') ? 'expanded' : 'expanded'))
                       concat render_half_width_custom_fields_rows_by_grouped_values(issue, values)
                       concat render_full_width_custom_fields_rows_by_grouped_values(issue, values)
                     end

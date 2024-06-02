@@ -13,10 +13,10 @@ class FieldsetTest < ApplicationSystemTestCase
     Setting.clear_cache
   end
 
-  test 'click group title should collapse/expand fieldset with default state all_expended' do
+  test 'click group title should collapse/expand fieldset with default state all_expanded' do
     Setting.plugin_redmine_custom_fields_groups = {
       'custom_fields_group_tag' => 'fieldset',
-      'fieldset_default_state' => 'all_expended'
+      'fieldset_default_state' => 'all_expanded'
     }
 
     log_user('dlopper', 'foo')

@@ -130,10 +130,10 @@ class LayoutTest < Redmine::IntegrationTest
     end
   end
 
-  test 'should show custom fields groups with fieldset tag all expended in issue from plugin setting' do
+  test 'should show custom fields groups with fieldset tag all expanded in issue from plugin setting' do
     Setting.plugin_redmine_custom_fields_groups = {
       'custom_fields_group_tag' => 'fieldset',
-      'fieldset_default_state' => 'all_expended'
+      'fieldset_default_state' => 'all_expanded'
     }
 
     log_user('dlopper', 'foo')
@@ -196,7 +196,7 @@ class LayoutTest < Redmine::IntegrationTest
     }
 
     @user.pref.others[:custom_fields_group_tag] = 'fieldset'
-    @user.pref.others[:fieldset_default_state] = 'all_expended'
+    @user.pref.others[:fieldset_default_state] = 'all_expanded'
     @user.pref.save!
 
     log_user('dlopper', 'foo')

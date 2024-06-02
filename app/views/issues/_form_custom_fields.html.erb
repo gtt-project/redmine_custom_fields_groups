@@ -4,7 +4,7 @@
 <% end %>
 <% fieldset_default_state = User.current.pref.fieldset_default_state %>
 <% if fieldset_default_state.blank? %>
-  <% fieldset_default_state = Setting.plugin_redmine_custom_fields_groups['fieldset_default_state'] || 'all_expended' %>
+  <% fieldset_default_state = Setting.plugin_redmine_custom_fields_groups['fieldset_default_state'] || 'all_expanded' %>
 <% end %>
 <% all_collapsed = (fieldset_default_state == 'all_collapsed') %>
 <% grouped_custom_field_values(@issue.editable_custom_field_values).each do |title, values| %>
@@ -35,7 +35,7 @@
         <% end %>
       <% else %>
         <% fieldset_class = 'collapsible custom-fields-groups' + (all_collapsed ? ' collapsed' : '') %>
-        <% legend_class = 'icon icon-' + (all_collapsed ? 'collapsed' : ((Redmine::VERSION.to_s >= '5.0.0') ? 'expanded' : 'expended')) %>
+        <% legend_class = 'icon icon-' + (all_collapsed ? 'collapsed' : ((Redmine::VERSION.to_s >= '5.0.0') ? 'expanded' : 'expanded')) %>
         <% div_style = all_collapsed ? 'display: none' : '' %>
         <fieldset class="<%= fieldset_class %>">
           <%= content_tag('legend', title, :onclick => "toggleFieldset(this);", :class => legend_class) %>

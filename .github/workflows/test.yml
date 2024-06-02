@@ -31,7 +31,7 @@ jobs:
           - system_test: true
             redmine_version: 5.1-stable
             ruby_version: '3.2'
-            db: mysql
+            db: 'mysql:5.7'
         exclude:
           - redmine_version: 4.2-stable
             ruby_version: '3.0'

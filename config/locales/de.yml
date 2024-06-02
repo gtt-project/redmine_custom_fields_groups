@@ -1,1 +1,14 @@
-{}
+error_can_not_delete_custom_fields_group: Die Gruppe der benutzerdefinierten Felder
+  kann nicht gelöscht werden
+label_custom_fields_group: Gruppe benutzerdefinierter Felder
+label_custom_fields_group_new: Neue Gruppe benutzerdefinierter Felder
+label_custom_fields_group_plural: Gruppen für benutzerdefinierte Felder
+label_custom_fields_group_settings: Einstellungen für Gruppen mit benutzerdefinierten
+  Feldern
+label_custom_fields_group_tag: Tag für Gruppen von benutzerdefinierten Feldern
+label_group_tag_h3: H3
+label_group_tag_h4: H4
+label_group_tag_fieldset: Eingabefeld
+label_fieldset_default_state: Grundeinstellung für Eingabefeld
+label_fieldset_state_all_collapsed: Alle zusammengeklappt
+label_fieldset_state_all_expended: Alle erweitert

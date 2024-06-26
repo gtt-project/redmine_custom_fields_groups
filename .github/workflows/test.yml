@@ -59,6 +59,16 @@ jobs:
         with:
           path: redmine/plugins/${{ env.PLUGIN_NAME }}
 
+      - name: Adjust gems
+        working-directory: redmine
+        run: |
+          touch Gemfile.local
+          # https://www.redmine.org/issues/40802
+          if grep -q "require 'blankslate'" lib/redmine/views/builders/structure.rb
+          then
+            echo 'gem "blankslate"' >> Gemfile.local
+          fi
+
       - name: Install Ruby dependencies
         working-directory: redmine
         run: |

@@ -28,7 +28,7 @@ end
 if Rails.version > '6.0' && Rails.autoloaders.zeitwerk_enabled?
   Dir.glob("#{Rails.root}/plugins/redmine_custom_fields_groups/app/overrides/**/*.rb").each do |path|
     Rails.autoloaders.main.ignore(path)
-    load File.expand_path(path, __FILE__)
+    require path
   end
   Rails.application.config.after_initialize do
     RedmineCustomFieldsGroups.setup

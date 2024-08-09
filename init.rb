@@ -26,7 +26,10 @@ Redmine::Plugin.register :redmine_custom_fields_groups do
 end
 
 if Rails.version > '6.0' && Rails.autoloaders.zeitwerk_enabled?
-  require_relative 'app/overrides/issues'
+  Dir.glob("#{Rails.root}/plugins/redmine_custom_fields_groups/app/overrides/**/*.rb").each do |path|
+    Rails.autoloaders.main.ignore(path)
+    require path
+  end
   Rails.application.config.after_initialize do
     RedmineCustomFieldsGroups.setup
   end

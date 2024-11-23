@@ -35,10 +35,13 @@
         <% end %>
       <% else %>
         <% fieldset_class = 'collapsible custom-fields-groups' + (all_collapsed ? ' collapsed' : '') %>
-        <% legend_class = 'icon icon-' + (all_collapsed ? 'collapsed' : ((Redmine::VERSION.to_s >= '5.0.0') ? 'expanded' : 'expended')) %>
+        <% legend_class = 'icon icon-' + (all_collapsed ? 'collapsed' : 'expanded') %>
         <% div_style = all_collapsed ? 'display: none' : '' %>
         <fieldset class="<%= fieldset_class %>">
-          <%= content_tag('legend', title, :onclick => "toggleFieldset(this);", :class => legend_class) %>
+          <%= content_tag('legend',
+                          (Redmine::VERSION.to_s >= '6.0.0') ? sprite_icon(all_collapsed ? "angle-down" : "angle-right") + title : title,
+                          :onclick => "toggleFieldset(this);",
+                          :class => legend_class) %>
           <% if half_width_values.present? %>
             <div class="splitcontent" style="<%= div_style %>">
               <div class="splitcontentleft">

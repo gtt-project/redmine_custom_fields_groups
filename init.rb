@@ -7,9 +7,9 @@ Redmine::Plugin.register :redmine_custom_fields_groups do
   author_url 'https://github.com/georepublic'
   url 'https://github.com/gtt-project/redmine_custom_fields_groups'
   description 'This is a plugin for grouping custom fields'
-  version '1.0.0'
+  version '2.0.0'
 
-  requires_redmine :version_or_higher => '4.1.0'
+  requires_redmine :version_or_higher => '5.0.0'
 
   settings partial: 'settings/redmine_custom_fields_groups',
     default: {
@@ -22,23 +22,14 @@ Redmine::Plugin.register :redmine_custom_fields_groups do
     { controller: 'custom_fields_groups', action: 'index' },
     caption: :label_custom_fields_group_plural,
     after: :custom_fields,
-    html: { class: 'icon icon-custom-fields custom-fields-groups' }
+    html: { class: 'icon icon-custom-fields-groups' },
+    icon: 'custom-fields-groups', plugin: :redmine_custom_fields_groups
 end
 
-if Rails.version > '6.0' && Rails.autoloaders.zeitwerk_enabled?
-  Dir.glob("#{Rails.root}/plugins/redmine_custom_fields_groups/app/overrides/**/*.rb").each do |path|
-    Rails.autoloaders.main.ignore(path)
-    require path
-  end
-  Rails.application.config.after_initialize do
-    RedmineCustomFieldsGroups.setup
-  end
-else
-  require 'redmine_custom_fields_groups'
-  Rails.application.paths["app/overrides"] ||= []
-  Rails.application.paths["app/overrides"] << File.expand_path("../app/overrides", __FILE__)
-
-  Rails.configuration.to_prepare do
-    RedmineCustomFieldsGroups.setup
-  end
+Dir.glob("#{Rails.root}/plugins/redmine_custom_fields_groups/app/overrides/**/*.rb").each do |path|
+  Rails.autoloaders.main.ignore(path)
+  require path
+end
+Rails.application.config.after_initialize do
+  RedmineCustomFieldsGroups.setup
 end

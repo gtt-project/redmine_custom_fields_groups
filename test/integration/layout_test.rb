@@ -11,6 +11,9 @@ class LayoutTest < Redmine::IntegrationTest
   setup do
     User.current = nil
     @user = User.find_by_login('dlopper')
+    if ActiveRecord::Base.connection_db_config.adapter == 'sqlite3'
+      load_plugin_fixtures(true)
+    end
   end
 
   teardown do

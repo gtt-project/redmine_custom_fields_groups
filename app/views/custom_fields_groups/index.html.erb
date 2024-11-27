@@ -1,5 +1,7 @@
 <div class="contextual">
-<%= link_to l(:label_custom_fields_group_new), new_custom_fields_group_path, :class => 'icon icon-add' %>
+<%= link_to (Redmine::VERSION.to_s >= '6.0.0') ? sprite_icon('add', l(:label_custom_fields_group_new)) : l(:label_custom_fields_group_new),
+            new_custom_fields_group_path,
+            :class => 'icon icon-add' %>
 </div>
 
 <%= title l :label_custom_fields_group_plural %>

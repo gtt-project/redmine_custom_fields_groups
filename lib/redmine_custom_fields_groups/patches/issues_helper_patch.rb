@@ -45,8 +45,10 @@ module RedmineCustomFieldsGroups
                     s << render_full_width_custom_fields_rows_by_grouped_values(issue, values)
                   else
                     s << content_tag('fieldset', :class => 'collapsible custom-fields-groups') do
-                      concat content_tag('legend', title, :onclick => 'toggleFieldset(this);',
-                        :class => 'icon icon-' + ((Redmine::VERSION.to_s >= '5.0.0') ? 'expanded' : 'expended'))
+                      concat content_tag('legend',
+                                        (Redmine::VERSION.to_s >= '6.0.0') ? sprite_icon('angle-down') + title : title,
+                                        :onclick => 'toggleFieldset(this);',
+                                        :class => 'icon icon-expanded')
                       concat render_half_width_custom_fields_rows_by_grouped_values(issue, values)
                       concat render_full_width_custom_fields_rows_by_grouped_values(issue, values)
                     end

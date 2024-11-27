@@ -7,6 +7,9 @@ class CustomFieldsGroupsControllerTest < ActionController::TestCase
   setup do
     User.current = nil
     @request.session[:user_id] = 1 # admin
+    if ActiveRecord::Base.connection_db_config.adapter == 'sqlite3'
+      load_plugin_fixtures(true)
+    end
   end
 
   teardown do

@@ -8,6 +8,12 @@ class FieldsetTest < ApplicationSystemTestCase
            :watchers, :journals, :journal_details,
            :custom_fields, :custom_fields_groups, :custom_fields_group_fields
 
+  setup do
+    if ActiveRecord::Base.connection_db_config.adapter == 'sqlite3'
+      load_plugin_fixtures(true)
+    end
+  end
+
   teardown do
     Setting.where(name: 'plugin_redmine_custom_fields_groups').destroy_all
     Setting.clear_cache

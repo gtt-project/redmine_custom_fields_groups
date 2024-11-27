@@ -3,6 +3,12 @@ require_relative '../test_helper'
 class CustomFieldsGroupTest < ActiveSupport::TestCase
   fixtures :custom_fields, :custom_fields_groups, :custom_fields_group_fields
 
+  setup do
+    if ActiveRecord::Base.connection_db_config.adapter == 'sqlite3'
+      load_plugin_fixtures(true)
+    end
+  end
+
   test 'create' do
     issue_custom_field = IssueCustomField.new(:name => 'test', :field_format => 'text')
     issue_custom_field.save!

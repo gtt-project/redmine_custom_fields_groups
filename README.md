@@ -1,5 +1,7 @@
 # Redmine Custom Fields Groups Plugin
 
+[![CI](https://github.com/gtt-project/redmine_custom_fields_groups/actions/workflows/test.yml/badge.svg)](https://github.com/gtt-project/redmine_custom_fields_groups/actions?query=workflow%3ATest+branch%3Amain)
+
 This is a plugin for grouping custom fields.
 
 ## Requirements

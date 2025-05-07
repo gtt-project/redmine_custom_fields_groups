@@ -10,7 +10,7 @@ module RedmineCustomFieldsGroups
     end
     def self.fieldset_states
       [
-        [l(:label_fieldset_state_all_expended), "all_expended"],
+        [l(:label_fieldset_state_all_expanded), "all_expanded"],
         [l(:label_fieldset_state_all_collapsed), "all_collapsed"],
       ]
     end

@@ -33,7 +33,7 @@ module RedmineCustomFieldsGroups
             end
             fieldset_default_state = User.current.pref.fieldset_default_state
             if fieldset_default_state.blank?
-              fieldset_default_state = Setting.plugin_redmine_custom_fields_groups['fieldset_default_state'] || 'all_expended'
+              fieldset_default_state = Setting.plugin_redmine_custom_fields_groups['fieldset_default_state'] || 'all_expanded'
             end
 
             s = ''.html_safe

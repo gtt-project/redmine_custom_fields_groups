@@ -7,14 +7,14 @@ Redmine::Plugin.register :redmine_custom_fields_groups do
   author_url 'https://github.com/georepublic'
   url 'https://github.com/gtt-project/redmine_custom_fields_groups'
   description 'This is a plugin for grouping custom fields'
-  version '2.0.0'
+  version '2.1.0'
 
-  requires_redmine :version_or_higher => '5.0.0'
+  requires_redmine :version_or_higher => '5.1.0'
 
   settings partial: 'settings/redmine_custom_fields_groups',
     default: {
       'custom_fields_group_tag' => 'h4',
-      'fieldset_default_state' => 'all_expended'
+      'fieldset_default_state' => 'all_expanded'
     }
 
   menu :admin_menu,

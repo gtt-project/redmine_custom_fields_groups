@@ -39,7 +39,7 @@ class CustomFieldsGroupsControllerTest < ActionController::TestCase
     assert_select 'input[type=checkbox][name=?][value=?]', 'custom_fields_group[custom_field_ids][]', '9'
   end
 
-  test 'should create custom fields gruop' do
+  test 'should create custom fields group' do
     assert_difference 'CustomFieldsGroup.count' do
       post :create, :params => {
         :custom_fields_group => {
@@ -55,7 +55,24 @@ class CustomFieldsGroupsControllerTest < ActionController::TestCase
     assert_equal 4, custom_fields_group.position
   end
 
-  test 'should not create custom fields gruop without name' do
+  test 'should create custom fields group with continue params' do
+    assert_difference 'CustomFieldsGroup.count' do
+      post :create, :params => {
+        :custom_fields_group => {
+          :name => 'Group 4',
+          :custom_field_ids => [9]
+        },
+        :continue => 'Create and add another'
+      }
+    end
+    assert_redirected_to '/custom_fields_groups/new'
+
+    assert custom_fields_group = CustomFieldsGroup.find_by_name('Group 4')
+    assert_equal [9], custom_fields_group.custom_field_ids
+    assert_equal 4, custom_fields_group.position
+  end
+
+  test 'should not create custom fields group without name' do
     post :create, :params => {
       :custom_fields_group => {
         :name => '',

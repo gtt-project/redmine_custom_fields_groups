@@ -17,7 +17,11 @@ class CustomFieldsGroupsController < ApplicationController
     @custom_fields_group.safe_attributes = custom_fields_group_params
     if @custom_fields_group.save
       flash[:notice] = l(:notice_successful_create)
-      redirect_to custom_fields_groups_path
+      if params[:continue]
+        redirect_to new_custom_fields_group_path
+      else
+        redirect_to custom_fields_groups_path
+      end
     else
       render :action => 'new'
     end
